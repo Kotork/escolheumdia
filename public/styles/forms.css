@@ -1,5 +1,5 @@
 form {
-  padding: 4rem 3rem;
+  padding: 4rem 5rem;
   /* background-color: #fafafa; */
   min-width: 30rem;
   border-radius: 20px;
@@ -32,6 +32,11 @@ form input[type="submit"] {
   font-size: 1.2rem;
 }
 
+.form--field__checkbox label {
+  font-size: 1.2rem;
+  padding-top: .2rem;
+}
+
 /* INPUTS */
 .form--field input {
   margin: 1rem 0;
@@ -53,16 +58,16 @@ form input[type="submit"] {
               rgba(0, 0, 0, 0) 0px 0px 0px 0px;
 }
 
-.form--field .form--field__checkbox input {
+.form--field__checkbox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.form--field__checkbox input {
   width: 20px;
   height: 15px;
   margin-right: 5px;
   box-shadow: unset;
   min-height: unset;
-}
-
-.form--field .form--field__checkbox label {
-  display: flex;
-  align-items: center;
-  margin: 0;
 }

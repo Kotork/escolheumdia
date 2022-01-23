@@ -3,27 +3,19 @@
 
 <div class="container--login">
   <form action="" method="post" id="authForm">
-    <h1 class="form--title">Faz o teu registo</h1>
+    <h1 class="form--title">Faz Login na tua conta</h1>
     <div class="form--field">
-      <label for="signupName">Nome</label>
-      <input id="signupName" type="text" name="name" value="">
+      <label for="loginEmail">Email</label>
+      <input id="loginEmail" type="email" name="email" value="">
     </div>
     <div class="form--field">
-      <label for="signupEmail">Email</label>
-      <input id="signupEmail" type="email" name="email" value="">
-    </div>
-    <div class="form--field">
-      <label for="signupPassword">Password</label>
-      <input id="signupPassword" type="password" name="password" value="">
-    </div>
-    <div class="form--field form--field__checkbox">
-      <label for="signupPassword">Password</label>
-      <input id="signupPassword" type="checkbox" name="rgpd" value="">
+      <label for="loginPassword">Password</label>
+      <input id="loginPassword" type="password" name="password" value="">
     </div>
     <input type="submit" name="submit" value="Login" class="btn btn--round">
     <span class="form--info">
       Ainda não tens conta?
-      <a type="button" class="btn--text" onclick="switchLoginSignup('Login')">Já tens conta!</a>
+      <a type="button" class="btn--text" onclick="switchLoginSignup('Signup')">Regista-te aqui!</a>
     </span>
   </form>
   <a href="/" class="btn btn--round">Go back home</a>
