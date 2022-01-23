@@ -1,11 +1,4 @@
-# NodeJS + EJS  skeleton
-
-It's a simple skeleton to start your website and it's ready to work on heroku.
-
-What it uses
-    - EJS
-    - Node
-        - Express
+# Escolhe um dia
 
 ## Instalation
 
