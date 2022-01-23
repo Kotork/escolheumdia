@@ -1,9 +1,14 @@
 <%- include('./partials/_header.ejs') %>
 <%- include('./partials/_navbar.ejs') %>
 
-<div class="container--login">
-  <form action="" method="post" id="authForm">
+<div id="containerLogin" class="container--login" data-ejs="<%- JSON.stringify(data) %>">
+  <form action="" method="post" id="authForm" class="<%= data.error.length && 'error--shadow' %>">
     <h1 class="form--title">Faz Login na tua conta</h1>
+    <% if (data.error.length) { %>
+    <div class="form--error">
+      <span><%= data.error %></span>
+    </div>
+    <% } %>
     <div class="form--field">
       <label for="loginEmail">Email</label>
       <input id="loginEmail" type="email" name="email" value="">

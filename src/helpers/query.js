@@ -1,4 +1,4 @@
-const mysql = require("mysql");
+import mysql from "mysql";
 
 // dados para estabeler a ligação ao servidor MySQL
 const pool = mysql.createPool({
@@ -12,7 +12,7 @@ const pool = mysql.createPool({
 });
 
 // função para a execução das queries, garantindo que o código que depende dos seus resultados aguarda pelos mesmos
-const runQuery = (query, callback) => {
+export const runQuery = (query, callback) => {
   pool.getConnection(function (err, connection) {
       if (err) {
           console.error(err);
@@ -26,5 +26,3 @@ const runQuery = (query, callback) => {
       });
   });
 }
-
-module.exports = runQuery;

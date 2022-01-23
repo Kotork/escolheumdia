@@ -10,6 +10,6 @@
   margin-bottom: 2rem;
 }
 
-form span {
+form > span {
   margin-top: 2rem;
 }

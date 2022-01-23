@@ -1,12 +1,12 @@
-const express = require('express');
-const homeRouter = express.Router()
+import express from 'express';
+import { runQuery } from '../helpers/query.js';
 
-const runQuery = require('../helpers/query');
+const homeRouter = express.Router()
 
 /* Object that needs to be passed to every page */
 const options = {
-    title: 'Page title',
-    page: 'Page file name'
+    title: 'Escolhe um dia',
+    page: 'Home'
   };
 
 homeRouter.get('', (req, res) => {
@@ -14,7 +14,7 @@ homeRouter.get('', (req, res) => {
   runQuery(query, (err, result, fields) => {
     console.log(result);
   })*/
-  res.render('home', {tile: 'Escolhe um dia', page: 'Home'});
+  res.render('home', { data: options });
 })
 
-module.exports = homeRouter;
+export default homeRouter;

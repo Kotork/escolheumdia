@@ -2,7 +2,9 @@
 <%- include('./partials/_navbar.ejs') %>
 
 <div class="container">
-
+  <% if (session) { %>
+    <p> <%- JSON.stringify(session) %> </p>
+  <% } %>
 </div>
 
 <%- include('./partials/_footer.ejs') %>

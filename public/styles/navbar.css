@@ -29,3 +29,7 @@ nav .nav--right {
 	justify-content: space-between;
 	align-items: center;
 }
+
+nav .nav--right div {
+	margin-right: 2rem;
+}

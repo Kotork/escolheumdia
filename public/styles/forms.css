@@ -10,6 +10,9 @@ form {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+.error--shadow {
+  box-shadow: rgba(240, 128, 128, 0.8) 0px 3px 8px;
+}
 
 form input[type="submit"] {
   margin-top: 2rem;
@@ -27,6 +30,19 @@ form input[type="submit"] {
   margin-bottom: 1rem;
 }
 
+.form--error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--error-color);
+  height: 3rem;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-family: var(--title-font);
+  border-radius: 15px;
+  color: #fafafa;
+}
+
 /* LABELS */
 .form--field label {
   font-size: 1.2rem;
@@ -34,7 +50,7 @@ form input[type="submit"] {
 
 .form--field__checkbox label {
   font-size: 1.2rem;
-  padding-top: .2rem;
+  padding-top: 0.2rem;
 }
 
 /* INPUTS */
@@ -49,13 +65,10 @@ form input[type="submit"] {
   border-radius: 4px;
   outline-color: rgb(84 105 212 / 0.5);
   background-color: rgb(255, 255, 255);
-  box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-              rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-              rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-              rgba(60, 66, 87, 0.16) 0px 0px 0px 1px,
-              rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-              rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-              rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+  box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(60, 66, 87, 0.16) 0px 0px 0px 1px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px;
 }
 
 .form--field__checkbox {
