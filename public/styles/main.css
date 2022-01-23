@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+  /* Insert globabl css variables here */
+	--font: "Roboto";
+	--title-font: "Poppins";
+	--blue: #0693d9;
+	--dark-blue: #0900b0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%; /* To make 1 rem = 10px */
+  scroll-behavior: smooth;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 0px; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+}
+
+body {
+  font-family: var(--font);
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 0.25fr repeat(3, 1fr) 0.25fr;
+  grid-template-rows: 80px 1fr 100px;
+  grid-template-areas:
+    "sideLeft navbar navbar navbar sideRight"
+    "sideLeft main main main sideRight"
+    "sideLeft footer footer footer sideRight";
+	transition: all 0.25s ease;
+}
+
+@media only screen and (max-width: 978px) {
+  body {
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px 1fr 80px;
+    grid-template-areas:
+      "navbar"
+      "main"
+      "footer";
+  }
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+.container {
+  grid-area: main;
+  background-color: aquamarine;
+}
+
+footer {
+  grid-area: footer;
+  background-color: lightcoral;
+}
+
+/* BUTTONS */
+.btn {
+	outline: none;
+  text-align: center;
+  padding: 1rem 2rem;
+  border-radius: 40px;
+  background: #fff;
+  border: 2px solid #000;
+  color: #000;
+  letter-spacing: 1px;
+  text-shadow: 0;
+  cursor: pointer;
+  transition: all 0.25s ease;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.btn:hover {
+	color:white;
+	background: #000;
+}
+
+.btn:active {
+	letter-spacing: 2px ;
+}
+
+.btn--text {
+	cursor: pointer;
+	font-weight: bold;
+	color: var(--blue);
+  transition: all 0.25s ease;
+}
+
+.btn--text:hover {
+	color: var(--dark-blue);
+	font-size: 110%;
+}
