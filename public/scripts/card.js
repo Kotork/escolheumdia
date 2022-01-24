@@ -3,12 +3,11 @@ window.onload = function () {
   const cardnumber = document.getElementById('cardnumber');
   const expirationdate = document.getElementById('expirationdate');
   const securitycode = document.getElementById('securitycode');
-  const output = document.getElementById('output');
   const ccicon = document.getElementById('ccicon');
   const ccsingle = document.getElementById('ccsingle');
-  const generatecard = document.getElementById('generatecard');
 
-  let cctype = null;
+  document.getElementById('svgname').innerHTML = name.value;
+  document.getElementById('svgnameback').innerHTML = name.value;
 
   //Mask the Credit Card Number Input
   var cardnumber_mask = new IMask(cardnumber, {
@@ -28,18 +27,7 @@ window.onload = function () {
         mask: '0000 0000 0000 0000',
         regex: '^(5[1-5]\\d{0,2}|22[2-9]\\d{0,1}|2[3-7]\\d{0,2})\\d{0,12}',
         cardtype: 'mastercard'
-      },
-          // {
-          //     mask: '0000-0000-0000-0000',
-          //     regex: '^(5019|4175|4571)\\d{0,12}',
-          //     cardtype: 'dankort'
-          // },
-          // {
-          //     mask: '0000-0000-0000-0000',
-          //     regex: '^63[7-9]\\d{0,13}',
-          //     cardtype: 'instapayment'
-          // },
-      {
+      }, {
         mask: '0000 000000 00000',
         regex: '^(?:2131|1800)\\d{0,11}',
         cardtype: 'jcb15'
@@ -51,13 +39,7 @@ window.onload = function () {
         mask: '0000 0000 0000 0000',
         regex: '^(?:5[0678]\\d{0,2}|6304|67\\d{0,2})\\d{0,12}',
         cardtype: 'maestro'
-      },
-          // {
-          //     mask: '0000-0000-0000-0000',
-          //     regex: '^220[0-4]\\d{0,12}',
-          //     cardtype: 'mir'
-          // },
-      {
+      }, {
         mask: '0000 0000 0000 0000',
         regex: '^4\\d{0,15}',
         cardtype: 'visa'
@@ -82,6 +64,8 @@ window.onload = function () {
       }
   });
 
+  document.getElementById('svgnumber').innerHTML = cardnumber_mask.value;
+
   //Mask the Expiration Date
   var expirationdate_mask = new IMask(expirationdate, {
       mask: 'MM{/}YY',
@@ -90,6 +74,8 @@ window.onload = function () {
           MM: new IMask.MaskedPattern.Group.Range([1, 12]),
       }
   });
+
+  document.getElementById('svgexpire').innerHTML = expirationdate_mask.value;
 
   //Mask the security code
   var securitycode_mask = new IMask(securitycode, {
@@ -180,15 +166,6 @@ window.onload = function () {
     }
   });
 
-  //Generate random card number from list of known test numbers
-  const randomCard = function () {
-      let testCards = [ '4000056655665556', '5200828282828210', '371449635398431', '6011000990139424', '30569309025904', '3566002020360505', '6200000000000005', '6759649826438453', ];
-      let randomNumber = Math.floor(Math.random() * testCards.length);
-      cardnumber_mask.unmaskedValue = testCards[randomNumber];
-  }
-
-  generatecard.addEventListener('click', randomCard());
-
   // CREDIT CARD IMAGE JS
   document.querySelector('.preload').classList.remove('preload');
   document.querySelector('.creditcard').addEventListener('click', function () {
@@ -202,8 +179,8 @@ window.onload = function () {
   //On Input Change Events
   name.addEventListener('input', function () {
     if (name.value.length == 0) {
-      document.getElementById('svgname').innerHTML = 'John Doe';
-      document.getElementById('svgnameback').innerHTML = 'John Doe';
+      document.getElementById('svgname').innerHTML = 'João Fonseca';
+      document.getElementById('svgnameback').innerHTML = 'João fonseca';
     } else {
       document.getElementById('svgname').innerHTML = this.value;
       document.getElementById('svgnameback').innerHTML = this.value;
@@ -233,6 +210,8 @@ window.onload = function () {
       document.getElementById('svgsecurity').innerHTML = securitycode_mask.value;
     }
   });
+
+  document.getElementById('svgsecurity').innerHTML = securitycode_mask.value;
 
   //On Focus Events
   name.addEventListener('focus', function () {
