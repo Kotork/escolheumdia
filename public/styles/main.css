@@ -10,6 +10,7 @@
   --mono-font: 'Source Code Pro', monospace;
   --cursive-font: 'Rock Salt', cursive;
   --blue: #0693d9;
+  --yellow: #FDC961;
   --dark-blue: #0900b0;
   --error-color: lightcoral;
   --error-dark-color: #e1183e;
@@ -65,13 +66,19 @@ a {
 
 .container {
   grid-area: main;
-  background-color: var(--success-color);
+  background-color: var(--yellow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+  border-radius: 50px;
 }
 
-footer {
-  grid-area: footer;
-  background-color: var(--error-color);
+.container img {
+  width: 100%;
+  height: auto;
 }
+
 
 /* BUTTONS */
 .btn {
