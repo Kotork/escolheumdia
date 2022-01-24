@@ -6,8 +6,8 @@ let options = {
 
 const cards = [{
   id: 1,
-  name: 'Ricardo Mateus',
-  number: 4000056655665556,
+  name: 'Rui Lopes',
+  photo: 4000056655665556,
   cvv: 123,
   validity: '01/22',
   user_id: 2
@@ -18,6 +18,10 @@ const cards = [{
   cvv: 356,
   validity: '03/26',
   user_id: 1
+}]
+
+const staff = [{
+
 }]
 
 export const userPage = (req, res) => {
