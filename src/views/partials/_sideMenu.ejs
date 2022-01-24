@@ -30,6 +30,9 @@
 
     <!-- When user is a admin -->
     <% if (session.user.role === 'ADMIN') { %>
+      <li class="<%= data.page === 'Users' && 'active' %>">
+        <a href="/user?users">Meus utilizadores</a>
+      </li>
       <li class="<%= data.page === 'Clients' && 'active' %>">
         <a href="/user?clients">Meus clientes</a>
       </li>

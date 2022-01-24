@@ -8,10 +8,10 @@
   <div class="main--content">
     <% switch (data.page) {
       case 'Profile': %>
-        <%- include('./partials/user/profile.ejs') %>
+        <%- include('./partials/user/_profile.ejs') %>
         <% break; %>
       <% case 'Cards': %>
-        <%- include('./partials/user/card.ejs') %>
+        <%- include('./partials/user/_card.ejs') %>
         <% break; %>
       <% case 'Bookings': %>
         <%= data.page %>
@@ -27,6 +27,9 @@
         <% break; %>
       <% case 'Sdd': %>
         <%= data.page %>
+        <% break; %>
+      <% case 'Users': %>
+      <%- include('./partials/user/_users.ejs') %>
         <% break; %>
       <% case 'Clients': %>
       <%- include('./partials/user/_clients.ejs') %>
