@@ -1,12 +1,9 @@
 form {
   padding: 4rem 5rem;
-  /* background-color: #fafafa; */
   min-width: 30rem;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-
-  /* box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; */
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 

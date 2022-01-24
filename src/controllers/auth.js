@@ -9,24 +9,28 @@ const options = {
 
 const mockData =[
   {
-    name: 'Ricardo Mateus',
-    email: 'r.fmateus@hotmail.com',
+    id: 1,
+    name: 'luisfonseca',
+    email: 'lf@gmail.com',
     password: '1234',
     rgpd: true,
     role: 'USER'
   }, {
+    id: 2,
     name: 'Ricardo Mateus',
     email: 'a@a.pt',
     password: '1234',
     rgpd: true,
     role: 'USER'
   }, {
+    id: 3,
     name: 'Admin User',
     email: 'admin@admin.pt',
     password: 'admin',
     rgpd: true,
     role: 'ADMIN'
   }, {
+    id: 4,
     name: 'Client User',
     email: 'client@test.pt',
     password: '1212',

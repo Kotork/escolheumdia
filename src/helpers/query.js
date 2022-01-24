@@ -1,15 +1,15 @@
 import mysql from "mysql";
 
 // dados para estabeler a ligação ao servidor MySQL
-const pool = mysql.createPool({
+/*const pool = mysql.createPool({
   host: "saturno.esec.pt",
   user: "dummy",
   password: "dummy",
-  database: "escolheumdia",
+  database: "a2019117919",
   charset: "utf8",
   // possibilidade de execução de várias instruções SQL em sequência
   multipleStatements: true
-});
+});*/
 
 // função para a execução das queries, garantindo que o código que depende dos seus resultados aguarda pelos mesmos
 export const runQuery = (query, callback) => {

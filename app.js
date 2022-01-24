@@ -28,6 +28,7 @@ app.use(session({
 // Custom middleware to access session data in EJS
 app.use(function(req, res, next) {
 	req.session.user = {
+		id: 2,
     name: 'Ricardo Mateus',
     email: 'a@a.pt',
     rgpd: true,
@@ -42,11 +43,13 @@ app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
 // Routes
-import homeRouter from './src/routes/home.js';
 import authRouter from './src/routes/auth.js';
+import homeRouter from './src/routes/home.js';
+import userRouter from './src/routes/user.js';
 
 app.use('/', homeRouter);
 app.use('/auth', authRouter);
+app.use('/user', userRouter);
 
 app.get('*', (req, res) => {
 	res.send("Not Found");
