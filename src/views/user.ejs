@@ -28,6 +28,9 @@
       <% case 'Sdd': %>
         <%= data.page %>
         <% break; %>
+      <% case 'Clients': %>
+      <%- include('./partials/user/_clients.ejs') %>
+        <% break; %>
       <% default: %>
         <%- include('./partials/user/profile.ejs') %>
     <% } %>

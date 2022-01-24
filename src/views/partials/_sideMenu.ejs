@@ -28,6 +28,13 @@
       </li>
     <% } %>
 
+    <!-- When user is a admin -->
+    <% if (session.user.role === 'ADMIN') { %>
+      <li class="<%= data.page === 'Clients' && 'active' %>">
+        <a href="/user?clients">Meus clientes</a>
+      </li>
+    <% } %>
+
     <li class="<%= data.page === 'Invoices' && 'active' %>">
       <a href="/user?invoices">Minhas faturas</a>
     </li>
