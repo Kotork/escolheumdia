@@ -13,26 +13,26 @@
       <% case 'Cards': %>
         <%- include('./partials/user/_card.ejs') %>
         <% break; %>
-      <% case 'Bookings': %>
-        <%= data.page %>
-        <% break; %>
       <% case 'Invoices': %>
-        <%= data.page %>
+      <%- include('./partials/user/_invoices.ejs') %>
         <% break; %>
       <% case 'Staff': %>
         <%- include('./partials/user/_staff.ejs') %>
         <% break; %>
       <% case 'Services': %>
-        <%= data.page %>
+       <%- include('./partials/user/_services.ejs') %>
         <% break; %>
       <% case 'Sdd': %>
-        <%= data.page %>
+        <%- include('./partials/user/_sdd.ejs') %>
         <% break; %>
       <% case 'Users': %>
       <%- include('./partials/user/_users.ejs') %>
         <% break; %>
       <% case 'Clients': %>
       <%- include('./partials/user/_clients.ejs') %>
+        <% break; %>
+      <% case 'Bookings': %>
+        <%- include('./partials/user/_bookings.ejs') %>
         <% break; %>
       <% default: %>
         <%- include('./partials/user/profile.ejs') %>
