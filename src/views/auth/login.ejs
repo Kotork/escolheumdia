@@ -5,6 +5,11 @@
 <div id="containerLogin" class="container--login" data-ejs="<%- JSON.stringify(data) %>">
   <form method="post" id="authForm" class="<%= data.error.length && 'error--shadow' %>">
     <h1 class="form--title">Faz Login na tua conta</h1>
+    <% if (data.success.length) { %>
+    <div class="form--success" id="successEl">
+      <span><%= data.success %></span>
+    </div>
+    <% } %>
     <% if (data.error.length) { %>
     <div class="form--error">
       <span><%= data.error %></span>

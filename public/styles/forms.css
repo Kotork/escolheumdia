@@ -28,17 +28,25 @@ form input[type="submit"] {
   margin-bottom: 1rem;
 }
 
-.form--error {
+.form--error,
+.form--success {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--error-color);
   height: 3rem;
   margin-bottom: 1rem;
   font-size: 1.2rem;
   font-family: var(--title-font);
   border-radius: 15px;
+}
+
+.form--error {
+  background-color: var(--error-color);
   color: #fafafa;
+}
+
+.form--success {
+  background-color: var(--success-color);
 }
 
 /* LABELS */

@@ -1,13 +1,9 @@
 let form = document.getElementById('authForm');
+let successEl = document.getElementById('successEl');
 const EJSdata = document.getElementById('containerLogin').getAttribute('data-ejs');
 
-async function handleSubmit (event) {
-  event.preventDefault();
-
-
-  alert('aqui');
-  console.log('aqui');
-}
+// Remove success message after 3s
+setTimeout(() => {successEl.style.display = 'none'}, 3000);
 
 form.addEventListener('submit', handleSubmit);
 
@@ -40,7 +36,7 @@ async function handleSubmit(event) {
       form.reset()
     } else {
       alert('Utilizador criado com sucesso')
-      window.location.href = `${baseUrl}/user`
+      window.location.href = `${baseUrl}/auth`
     }
 
   }).catch(error => {

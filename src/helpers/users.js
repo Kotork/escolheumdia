@@ -8,14 +8,19 @@ export const findUserByEmail = async (email) => {
 
   let foundUser;
 
+  console.log('111111111111111111')
+
   // Find user or admin
   await runQuery(query, (err, result, fields) => {
+    console.log('2222222222222222')
     foundUser = result.find( user => user.email === email)
 
     if (foundUser) {
       return foundUser
     }
   })
+
+  console.log('333333333333333333333')
 
   query = `
     SELECT *
@@ -24,6 +29,7 @@ export const findUserByEmail = async (email) => {
 
   // Find client
   await runQuery(query, (err, result, fields) => {
+    console.log('4444444444444444444444')
     foundUser = result.find( user => user.email === req.body.email)
 
     if (foundUser) {
@@ -31,6 +37,7 @@ export const findUserByEmail = async (email) => {
     }
   })
 
+  console.log('5555555555555555555555555')
   return null
 }
 
