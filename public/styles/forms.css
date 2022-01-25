@@ -5,6 +5,7 @@ form {
   display: flex;
   flex-direction: column;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin-bottom: 2rem;
 }
 
 .error--shadow {
@@ -80,4 +81,18 @@ form input[type="submit"] {
   margin-right: 5px;
   box-shadow: unset;
   min-height: unset;
+}
+
+form .form--twoColumns,
+form .form--threeColumns{
+  display: flex;
+  justify-content: space-between;
+}
+
+form .form--twoColumns .form--field {
+  width: 45%;
+}
+
+form .form--threeColumns .form--field {
+  width: 30%;
 }

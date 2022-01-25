@@ -1,6 +1,63 @@
 <link rel="stylesheet" href="styles/page-user-clients.css">
 
 <div class="container--clients">
+  <div class="header--clients">
+    <h1>Meus clientes</h1>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg>
+  </div>
+
+  <form action="" method="post" id="clientForm" class="<%= data.error.length && 'error--shadow' %>">
+    <h1 class="form--title">Adicionar cliente</h1>
+    <div class="form--twoColumns">
+      <div class="form--field">
+        <label for="clientLogo">Logo</label>
+        <input id="clientLogo" type="text" name="logo" value="">
+      </div>
+      <div class="form--field">
+        <label for="clientName">Nome</label>
+        <input id="clientName" type="text" name="name" value="">
+      </div>
+    </div>
+
+    <div class="form--twoColumns">
+      <div class="form--field">
+        <label for="clientNIF">NIF</label>
+        <input id="clientNIF" type="number" name="nif" value="">
+      </div>
+      <div class="form--field">
+        <label for="clientEmail">Email</label>
+        <input id="clientEmail" type="email" name="email" value="">
+      </div>
+    </div>
+
+    <div class="form--field">
+      <label for="clientStreet">Rua</label>
+      <input id="clientStreet" type="text" name="street" value="">
+    </div>
+
+    <div class="form--threeColumns">
+      <div class="form--field">
+        <label for="clientCity">Cidade</label>
+        <input id="clientCity" type="text" name="city" value="">
+      </div>
+      <div class="form--field">
+        <label for="clientZipCode">Código Postal</label>
+        <input id="clientZipCode" type="text" name="zip_code" value="">
+      </div>
+      <div class="form--field">
+        <label for="clientCountry">País</label>
+        <input id="clientCountry" type="text" name="country" value="">
+      </div>
+    </div>
+
+    <div class="form--field__checkbox">
+      <input id="clientRGPD" type="checkbox" name="rgpd">
+      <label for="clientRGPD">RGPD - Termos e Condições</label>
+    </div>
+
+    <input type="submit" name="submit" value="Adicionar Cliente" class="btn btn--round btn--end">
+  </form>
+
   <table>
     <tr>
       <th>Logo</th>
@@ -31,3 +88,5 @@
     </tr>
   </table>
 </div>
+
+<script src="scripts/user/client.js"></script>
