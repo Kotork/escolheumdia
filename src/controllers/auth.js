@@ -2,7 +2,7 @@ const loginError = 'User or password incorrect';
 
 /* Object that needs to be passed to every page */
 const options = {
-  title: 'login',
+  title: 'user',
   page: 'Login',
   error: ''
 };
@@ -40,7 +40,11 @@ const mockData =[
 ]
 
 export const signinPage = (req, res) => {
-  res.render('login', {data: options});
+  res.render('auth/login', {data: options});
+}
+
+export const signupPage = (req, res) => {
+  res.render('auth/signup', {data: { ...options, page: 'Signup' }});
 }
 
 export const signin = (req, res) => {

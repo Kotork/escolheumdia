@@ -15,6 +15,7 @@ app.use(bodyParser.urlencoded({
 }));
 // Middleware to serve Static Files
 app.use(express.static('public'));
+app.use('/auth', express.static('public'))
 
 app.use(session({
 	secret: 'cdm',
@@ -27,13 +28,13 @@ app.use(session({
 
 // Custom middleware to access session data in EJS
 app.use(function(req, res, next) {
-	req.session.user = {
+	/*req.session.user = {
 		id: 3,
     name: 'Admin User',
     email: 'admin@admin.pt',
     rgpd: true,
     role: 'ADMIN'
-  }
+  }*/
   res.locals.session = req.session;
   next();
 });
@@ -49,6 +50,7 @@ import userRouter from './src/routes/user.js';
 
 app.use('/', homeRouter);
 app.use('/auth', authRouter);
+app.use('/auth/*', authRouter);
 app.use('/user', userRouter);
 
 app.get('*', (req, res) => {

@@ -1,17 +1,10 @@
-const authForm = document.getElementById('authForm');
+<%- include('../partials/_header.ejs') %>
+<link rel="stylesheet" href="styles/auth/login.css">
+<%- include('../partials/_navbar.ejs') %>
 
-const EJSdata = document.getElementById('containerLogin').getAttribute('data-ejs');
-
-console.log(EJSdata);
-
-function switchLoginSignup(changeTo) {
-  authForm.classList.remove('error--shadow');
-  if (changeTo === 'Login') {
-    // redirects to the same page
-    window.location.href = window.location.href
-  } else {
-    authForm.innerHTML = `
-      <h1 class="form--title">Faz o teu registo</h1>
+<div id="containerLogin" class="container--login" data-ejs="<%- JSON.stringify(data) %>">
+  <form method="post" id="authForm" class="<%= data.error.length && 'error--shadow' %>">
+    <h1 class="form--title">Faz o teu registo</h1>
       <div class="form--field">
         <label for="signupName">Nome</label>
         <input id="signupName" type="text" name="name" value="">
@@ -28,11 +21,14 @@ function switchLoginSignup(changeTo) {
         <input id="signupRGPD" type="checkbox" name="rgpd">
         <label for="signupRGPD">RGPD - Termos e Condições</label>
       </div>
-      <input type="submit" name="submit" value="Registar" class="btn btn--round">
+      <input type="button" name="submit" value="Registar" class="btn btn--round">
       <span class="form--info">
         Já tens conta?
-        <a type="button" class="btn--text" onclick="switchLoginSignup('Login')">Faz login aqui!</a>
+        <a href="/auth" class="btn--text">Faz login aqui!</a>
       </span>
-    `
-  }
-}
+  </form>
+  <a href="/" class="btn btn--round">Go back home</a>
+</div>
+
+<script src="scripts/auth/login.js"></script>
+<%- include('../partials/_footer.ejs') %>
