@@ -1,3 +1,6 @@
+import { runQuery } from '../helpers/query.js';
+import { findUserByEmail } from '../helpers/users.js';
+
 const loginError = 'User or password incorrect';
 
 /* Object that needs to be passed to every page */
@@ -80,6 +83,24 @@ export const signin = (req, res) => {
     console.log(newAccount)
     res.send(newAccount)
   }
+}
+
+export const signup = async (req, res) => {
+  const foundUser = findUserByEmail(req.body.email)
+
+  if (foundUser) {
+    res.status(400).send('User already exists!')
+  }
+
+  let query = `
+    INSERT INTO Users ('email', 'password', 'name', 'rgpd', 'role') VALUES (${req.body.email}, ${req.body.password}, ${req.body.name}, ${req.body.rgpd}, 'USER')
+  `
+
+  runQuery(query, (err, result, fields) => {
+    console.log(result);
+  })
+
+  res.send(true)
 }
 
 export const logout = (req, res) => {
