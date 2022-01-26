@@ -1,17 +1,12 @@
 let form = document.getElementById('authForm');
 let successEl = document.getElementById('successEl');
-const EJSdata = document.getElementById('containerLogin').getAttribute('data-ejs');
 
 // Remove success message after 3s
 setTimeout(() => {successEl.style.display = 'none'}, 3000);
 
-form.addEventListener('submit', handleSubmit);
-
 async function handleSubmit(event) {
   event.preventDefault();
   let data = {}
-
-  console.log(document.getElementById('submitBtn').value)
 
   if (document.getElementById('submitBtn').value === 'Login') {
     // SIGNIN
@@ -59,4 +54,5 @@ async function handleSubmit(event) {
     }).catch(error => alert(error.message));
   }
 }
+
 form.addEventListener("submit", handleSubmit)

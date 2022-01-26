@@ -180,7 +180,19 @@ export const sddPage = (req, res) => {
 export const servicesPage = (req, res) => {
   options.page = 'Services'
 
-  res.render('user', {data: options});
+  let query = `
+    SELECT *
+    FROM Services
+    WHERE Services.id_client = ${req.session.user.id}
+  `
+
+  runQuery(query, (err, result, fields) => {
+    if (err) {
+      res.status(404).send()
+    } else {
+      res.render('user', {data: { ...options, services: result }});
+    }
+  })
 }
 
 // STAFF

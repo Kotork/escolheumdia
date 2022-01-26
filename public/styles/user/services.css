@@ -22,3 +22,10 @@
 .container--services table tr td:nth-child(4) {
   padding-left: 1rem;
 }
+
+/* LAST COLUMN */
+.container--services table tr td:nth-last-child(1) {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

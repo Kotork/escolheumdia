@@ -10,16 +10,10 @@ const options = {
   success: '',
 };
 
+
+// SIGNIN USERS
 export const signinPage = (req, res) => {
   res.render('auth/login', {data: options});
-}
-
-export const signinClientsPage = (req, res) => {
-  res.render('auth/clients', {data: options});
-}
-
-export const signupPage = (req, res) => {
-  res.render('auth/signup', {data: { ...options, page: 'Signup' }});
 }
 
 export const signin = (req, res) => {
@@ -43,6 +37,11 @@ export const signin = (req, res) => {
       }
     }
   })
+}
+
+// SIGNIN CLIENTS
+export const signinClientsPage = (req, res) => {
+  res.render('auth/clients', {data: options});
 }
 
 export const signinClients = (req, res) => {
@@ -71,6 +70,11 @@ export const signinClients = (req, res) => {
   })
 }
 
+// SIGNUP
+export const signupPage = (req, res) => {
+  res.render('auth/signup', {data: { ...options, page: 'Signup' }});
+}
+
 export const signup = async (req, res) => {
   let query = "INSERT INTO `Users`(`email`, `password`, `name`, `rgpd`, `role`) VALUES ('" + req.body.email + "', '" + req.body.password + "', '" + req.body.name + "', " + (req.body.rgpd ? 1 : 0) + ", 'USER')"
 
@@ -86,6 +90,7 @@ export const signup = async (req, res) => {
   })
 }
 
+// LOGOUT
 export const logout = (req, res) => {
   req.session.user = null
   res.redirect('/')
