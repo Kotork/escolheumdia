@@ -1,10 +1,15 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cookieSession from 'cookie-session';
+import enforce from 'express-sslify'
+import cors from 'cors'
 
 const app  = express();
 
 const PORT = process.env.PORT || 3000
+
+app.use(enforce.HTTPS({ trustProtoHeader: true })) // Comment for dev || Uncomment for production
+app.use(cors())
 
 // Middlewares
 app.use(bodyParser.json({
