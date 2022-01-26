@@ -10,13 +10,6 @@ const options = {
   };
 
 homeRouter.get('', (req, res) => {
-  var query = `
-    SELECT *
-    FROM Users
-  `
-  runQuery(query, (err, result, fields) => {
-    console.log(result);
-  })
   res.render('home', { data: options });
 })
 

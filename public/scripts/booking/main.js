@@ -1,13 +1,12 @@
-async function handleSubmit(event) {
-  event.preventDefault();
+async function handleSubmit() {
   let data = {}
 
   let date_time = document.getElementById('reservationDate').value
-  let id_Client = document.getElementById('id_Client').value
-  let id_Service = document.getElementById('id_Service').value
-  let id_Staff = document.getElementById('id_Staff').value
+  let id_client = document.getElementById('id_Client').value
+  let id_service = document.getElementById('id_Service').value
+  let id_staff = document.getElementById('id_Staff').value
 
-  data = {date_time, id_Client, id_Service, id_Staff}
+  data = {date_time, id_client, id_service, id_staff}
 
   fetch(`${ baseUrl }/booking/reservation`, {
     method: "POST",
@@ -21,6 +20,7 @@ async function handleSubmit(event) {
       alert('ERRO')
     } else {
       alert('Reserva efetuada')
+      window.location.href = `${baseUrl}/user`
     }
   }).catch(error => alert(error.message));
 }

@@ -10,7 +10,19 @@ let options = {
 export const bookingsPage = (req, res) => {
   options.page = 'Bookings'
 
-  res.render('user', {data: options});
+  let query = `
+    SELECT *
+    FROM Reservations
+    WHERE Reservations.id_user = ${req.session.user.id}
+  `
+
+  runQuery(query, (err, result, fields) => {
+    if (err) {
+      res.status(404).send()
+    } else {
+      res.render('user', {data: { ...options, reservations: result }});
+    }
+  })
 }
 
 // CARDS

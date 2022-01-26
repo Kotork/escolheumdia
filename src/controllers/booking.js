@@ -47,13 +47,8 @@ export const bookingClientPage2 = (req, res) => {
     FROM Staff
     WHERE Staff.id_client = ${ req.params.client }
   `
-  console.log(req.params)
-
-  console.log(query)
 
   runQuery(query, (err, result, fields) => {
-    console.log(err)
-    console.log(result)
     if (err) {
       res.status(404).send()
     } else {
@@ -73,4 +68,22 @@ export const bookingClientPage3 = (req, res) => {
     id_client,
     id_service
    }});
+}
+
+export const reservation = (req, res) => {
+  console.log('---------------------------------')
+  console.log('RESERVATION')
+  console.log(req.body)
+
+  let query = "INSERT INTO `Reservations`(`date_time`, `id_staff`, `id_service`, `id_user`) VALUES ('" + req.body.date_time + "', " + req.body.id_staff + ", " + req.body.id_service + ", " + req.session.user.id + ")"
+
+  runQuery(query, (err, result, fields) => {
+    console.log(err)
+    console.log(result)
+    if (err) {
+      res.status(404).send()
+    } else {
+      res.render('bookingClient2', {data: { ...options, staff: result, id_client: req.params.client, id_service: req.params.service }});
+    }
+  })
 }
