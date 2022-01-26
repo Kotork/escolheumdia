@@ -1,3 +1,4 @@
+// For card functionality
 window.onload = function () {
   const name = document.getElementById('name');
   const cardnumber = document.getElementById('cardnumber');
@@ -230,3 +231,33 @@ window.onload = function () {
     document.querySelector('.creditcard').classList.add('flipped');
   });
 };
+
+// Save event
+
+async function handleSubmit(event) {
+  event.preventDefault();
+
+  let data = {
+    id: document.getElementById('id').value,
+    name: document.getElementById('name').value,
+    number: document.getElementById('cardnumber').value,
+    validity: document.getElementById('expirationdate').value,
+    cvv: document.getElementById('securitycode').value
+  }
+
+  console.log(data)
+
+  fetch(`${ baseUrl }/user/card`, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    }
+  }).then( response => {
+    console.log(response)
+
+  }).catch(error => {
+    alert(error.message)
+  });
+}

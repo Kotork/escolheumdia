@@ -1,35 +1,49 @@
+import { runQuery } from '../helpers/query.js'
+
 let options = {
   title: 'Perfil',
   page: 'Profile',
   error: ''
 };
 
-const cards = [{
-  id: 1,
-  name: 'Rui Lopes',
-  photo: 4000056655665556,
-  cvv: 123,
-  validity: '01/22',
-  user_id: 2
-}, {
-  id: 1,
-  name: 'Luis Fonseca',
-  number: 3566002020360505,
-  cvv: 356,
-  validity: '03/26',
-  user_id: 1
-}]
-
-const staff = [{
-
-}]
-
 export const userPage = (req, res) => {
   options.page = req.url === '/' ? 'Profile' : req.url.substr(2)[0].toUpperCase() + req.url.substr(2).substr(1).toLowerCase();
+  let query;
 
   switch (options.page) {
+    // USER PAGE CARDS
     case 'Cards':
-      options = { ...options, card: cards.find( (card) => card.user_id === req.session.user.id ) }
+      query = `
+        SELECT *
+        FROM Cards
+        WHERE Cards.id_user = ${req.session.user.id}
+      `
+
+      runQuery(query, (err, result, fields) => {
+        if (result.length) {
+          options = { ...options, card: {
+            id: result[0].id,
+            name: result[0].name,
+            number: result[0].number,
+            validity: result[0].validity,
+            cvv: result[0].cvv,
+          } }
+        }
+      })
+      break;
+    // USER PAGE STAFF
+    case 'Staff':
+      console.log("staff")
+      query = `
+        SELECT *
+        FROM Staff
+        WHERE Staff.id_user = ${req.session.user.id}
+      `
+
+      runQuery(query, (err, result, fields) => {
+        console.log("aqui")
+        console.log(result)
+      })
       break;
     default:
       console.log('other page')
@@ -38,4 +52,34 @@ export const userPage = (req, res) => {
   console.log(options)
 
   res.render('user', {data: options});
+}
+
+// function that creates or updates a card
+export const updateCard = (req, res) => {
+  let query;
+
+  if (req.body.id) {
+    // update card
+    query = "UPDATE `Cards` SET `name`='" + req.body.name + "', `number`='" + req.body.number + "', `cvv`=" + req.body.cvv + ", `validity`='" + req.body.validity + "' WHERE Cards.id = " + req.body.id
+
+    runQuery(query, (err, result, fields) => {
+      if (err) {
+        res.status(404).send()
+      } else {
+        res.status(200).send()
+      }
+    })
+  } else {
+    // create new card
+    query = "INSERT INTO `Cards`(`name`, `number`, `cvv`, `validity`, `id_user`) VALUES ('" + req.body.name + "', '" + req.body.number + "', " + req.body.cvv + ", '" + req.body.validity + "', " + req.session.user.id + ")"
+
+    runQuery(query, (err, result, fields) => {
+      if (err) {
+        res.status(404).send()
+      } else {
+        res.status(200).send()
+      }
+    })
+  }
+  res.status(500).send()
 }
