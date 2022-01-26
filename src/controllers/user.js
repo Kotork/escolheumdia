@@ -43,7 +43,6 @@ export const staffPage = (req, res) => {
     if (err) {
       res.status(404).send()
     } else {
-      console.log(result)
       res.render('user', {data: { ...options, staff: result }});
     }
   })
@@ -140,13 +139,7 @@ export const getClient = (req, res) => {
     WHERE Clients.id = ${ req.body.id }
   `
 
-  console.log('CLIETN: getclient')
-
-  console.log(query)
-
   runQuery(query, (err, result, fields) => {
-    console.log(err)
-    console.log(result)
     if (err) {
       res.status(404).send()
     } else {
@@ -159,16 +152,11 @@ export const getClient = (req, res) => {
 export const updateClient = (req, res) => {
   let query;
 
-  console.log('CLIENT: updateClient')
-  console.log(req.body)
-
   if (req.body.id) {
     // update client
     query = "UPDATE `Clients` SET `email`='" + req.body.email + "', `name`='" + req.body.name + "', `nif`=" + req.body.nif + ", `street`='" + req.body.street + "', `city`='" + req.body.city + "', `zip_code`= '" + req.body.zip_code + "', `country`= '" + req.body.country + "', `logo` = '" + req.body.logo + "', `rgpd`= " + (req.body.rgpd ? 1 : 0) + " WHERE Clients.id = " + req.body.id
 
     runQuery(query, (err, result, fields) => {
-      console.log(err)
-      console.log(result)
       if (err) {
         res.status(404).send()
       } else {
