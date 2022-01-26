@@ -3,29 +3,80 @@ let form = document.getElementById("clientForm")
 async function handleSubmit(event) {
   event.preventDefault()
 
-  var data = new FormData(form);
+  let data = {
+    id: document.getElementById("clientId").value,
+    logo: document.getElementById("clientLogo").value,
+    name: document.getElementById("clientName").value,
+    nif: document.getElementById("clientNIF").value,
+    email: document.getElementById("clientEmail").value,
+    street: document.getElementById("clientStreet").value,
+    city: document.getElementById("clientCity").value,
+    zip_code: document.getElementById("clientZipCode").value,
+    country: document.getElementById("clientCountry").value,
+    rgpd: document.getElementById("clientRGPD").checked
+  }
 
   console.log(data)
 
-      /*
-  fetch("https://formspree.io/f/mrgjbvlb", {
+  fetch(`${ baseUrl }/user/client`, {
     method: "POST",
-    body: data,
+    body: JSON.stringify(data),
     headers: {
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
     }
   }).then(response => {
-    loadingForm.classList.remove('d-block');
-    var successForm = document.getElementById("successForm");
-    successForm.classList.add('d-block');
-    successForm.innerHTML = "Thanks for your submission!";
-    form.reset()
+    if (response.status === 404) {
+      alert('Algo correu mal')
+    } else {
+      alert('Cliente atualizado com sucesso')
+      form.reset()
+      clientForm.classList.add('d--none')
+      window.location.href = `${baseUrl}/user/clients`
+    }
   }).catch(error => {
-    loadingForm.classList.remove('d-block');
-    var errorForm = document.getElementById("errorForm");
-    errorForm.classList.add('d-block');
-    errorForm.innerHTML = "Oops! There was a problem submitting your form";
-  });*/
+    alert(error)
+  });
 }
 
 form.addEventListener("submit", handleSubmit)
+
+function showHideForm() {
+  if (clientForm.classList.value === 'd--none') {
+    // Form is hidden and we have to show it
+    clientForm.classList.remove('d--none')
+  } else {
+    // We have to hide the form
+    clientForm.classList.add('d--none')
+  }
+}
+
+function deleteClient(id) {
+  let data = { id }
+
+  fetch(`${ baseUrl }/user/client`, {
+    method: "DELETE",
+    body: JSON.stringify(data),
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    }
+  }).then(response => {
+    if (response.status === 404) {
+      alert('Algo correu mal')
+    } else {
+      alert('Cliente apagado com sucesso')
+      window.location.href = `${baseUrl}/user/clients`
+    }
+  }).catch(error => {
+    alert(error)
+  });
+}
+
+function updateClient(event) {
+  let tableRow = event.target.parentNode.parentNode
+
+  console.log(tableRow)
+  console.log(tableRow.getElementsByTagName('td')[1])
+  console.log(tableRow.getElementsByTagName('td')[1].innerText)
+}

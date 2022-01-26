@@ -38,11 +38,8 @@ export const staffPage = (req, res) => {
     FROM Staff
     WHERE Staff.id_client = ${req.session.user.id}
   `
-  console.log(query)
 
   runQuery(query, (err, result, fields) => {
-    console.log("aqui")
-    console.log(err)
     if (err) {
       res.status(404).send()
     } else {
@@ -61,7 +58,18 @@ export const bookingsPage = (req, res) => {
 export const clientsPage = (req, res) => {
   options.page = 'Clients'
 
-  res.render('user', {data: options});
+  let query = `
+    SELECT *
+    FROM Clients
+  `
+
+  runQuery(query, (err, result, fields) => {
+    if (err) {
+      res.status(404).send()
+    } else {
+      res.render('user', {data: { ...options, clients: result }});
+    }
+  })
 }
 
 export const invoicesPage = (req, res) => {
@@ -121,5 +129,58 @@ export const updateCard = (req, res) => {
       }
     })
   }
+  res.status(500).send()
+}
+
+// function that creates or updates a client
+export const updateClient = (req, res) => {
+  let query;
+
+  console.log('CLIENT: updateClient')
+  console.log(req.body)
+
+  if (req.body.id) {
+    // update client
+    query = "UPDATE `Cards` SET `name`='" + req.body.name + "', `number`='" + req.body.number + "', `cvv`=" + req.body.cvv + ", `validity`='" + req.body.validity + "' WHERE Cards.id = " + req.body.id
+
+    /*runQuery(query, (err, result, fields) => {
+      if (err) {
+        res.status(404).send()
+      } else {
+        res.status(200).send()
+      }
+    })*/
+  } else {
+    // create new card
+    query = "INSERT INTO `Clients`(`email`, `password`, `name`, `nif`, `street`, `city`, `zip_code`, `country`, `logo`, `rgpd`) VALUES ('" + req.body.email + "', '1234', '" + req.body.name + "', " + req.body.nif + ", '" + req.body.street + "', '" + req.body.city + "', '" + req.body.zip_code + "', '" + req.body.country + "', '" + req.body.logo + "', " + (req.body.rgpd ? 1 : 0) + ")"
+
+    runQuery(query, (err, result, fields) => {
+      if (err) {
+        res.status(404).send()
+      } else {
+        res.status(200).send()
+      }
+    })
+  }
+  res.status(500).send()
+}
+
+// function that deletes a specific client using it's id
+export const deleteClient = (req, res) => {
+  let query = `
+    DELETE FROM Clients
+    WHERE Clients.id = ${ req.body.id }
+  `
+
+  runQuery(query, (err, result, fields) => {
+    console.log(err)
+    console.log(result)
+    if (err) {
+      res.status(404).send()
+    } else {
+      res.status(200).send()
+    }
+  })
+
   res.status(500).send()
 }

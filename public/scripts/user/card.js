@@ -255,8 +255,12 @@ async function handleSubmit(event) {
         'Content-Type': 'application/json'
     }
   }).then( response => {
-    console.log(response)
-
+    if (response.status === 404) {
+      alert('Algo correu mal')
+    } else {
+      alert('Cartão atualizado com sucesso')
+      form.reset()
+    }
   }).catch(error => {
     alert(error.message)
   });
