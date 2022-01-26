@@ -16,6 +16,7 @@ async function handleSubmit(event) {
 
     fetch(`${ baseUrl }/auth`, {
       method: "POST",
+      mode: 'cors',
       body: JSON.stringify(data),
       headers: {
           'Accept': 'application/json',
@@ -38,6 +39,7 @@ async function handleSubmit(event) {
     data = {name, email, password, rgpd}
     fetch(`${ baseUrl }/auth/signup`, {
       method: "POST",
+      mode: 'cors',
       body: JSON.stringify(data),
       headers: {
           'Accept': 'application/json',
