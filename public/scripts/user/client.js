@@ -1,4 +1,4 @@
-let form = document.getElementById("clientForm")
+let form = document.getElementById("updateForm")
 
 async function handleSubmit(event) {
   event.preventDefault()
@@ -40,17 +40,6 @@ async function handleSubmit(event) {
 }
 
 form.addEventListener("submit", handleSubmit)
-
-function showHideForm() {
-  if (clientForm.classList.value === 'd--none') {
-    // Form is hidden and we have to show it
-    clientForm.classList.remove('d--none')
-  } else {
-    // We have to hide the form
-    form.reset()
-    clientForm.classList.add('d--none')
-  }
-}
 
 function deleteClient(id) {
   let data = { id }

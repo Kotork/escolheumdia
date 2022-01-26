@@ -185,6 +185,8 @@ export const deleteClient = (req, res) => {
     WHERE Clients.id = ${ req.body.id }
   `
 
+  // TODO - Delete relevant info like staff, services and SDD
+
   runQuery(query, (err, result, fields) => {
     if (err) {
       res.status(404).send()

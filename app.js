@@ -31,11 +31,11 @@ app.use(session({
 // Custom middleware to access session data in EJS
 app.use(function(req, res, next) {
 	req.session.user = {
-		id: 1,
+		id: 3,
     name: 'Admin User',
     email: 'admin@admin.pt',
     rgpd: true,
-    role: 'ADMIN'
+    role: 'CLIENT'
   }
 	console.log('SESSION')
 	console.log(req.session.user)
