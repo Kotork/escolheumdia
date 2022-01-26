@@ -8,31 +8,37 @@ const options = {
   success: '',
 };
 
+// Function that will fetch everything necessary to load the page
 export const bookingPage = (req, res) => {
+  // query will get everything from clients
   let query = `
     SELECT *
     FROM Clients
   `
 
+  // function that will run the query
   runQuery(query, (err, result, fields) => {
     if (err) {
+      // if there is an error
       res.status(404).send()
     } else {
+      // will render the page booking.ejs with the result in data.clients
       res.render('booking', {data: { ...options, clients: result }});
     }
   })
 }
 
+// After choosing the client this is the next step, that is to show all services from that client
 export const bookingClientPage = (req, res) => {
+  // query that will get everything from services that have the id of the client the user choosed
   let query = `
     SELECT *
     FROM Services
     WHERE Services.id_client = ${ req.params.client }
   `
 
+  // function to run the query
   runQuery(query, (err, result, fields) => {
-    console.log(err)
-    console.log(result)
     if (err) {
       res.status(404).send()
     } else {
@@ -71,15 +77,9 @@ export const bookingClientPage3 = (req, res) => {
 }
 
 export const reservation = (req, res) => {
-  console.log('---------------------------------')
-  console.log('RESERVATION')
-  console.log(req.body)
-
   let query = "INSERT INTO `Reservations`(`date_time`, `id_staff`, `id_service`, `id_user`) VALUES ('" + req.body.date_time + "', " + req.body.id_staff + ", " + req.body.id_service + ", " + req.session.user.id + ")"
 
   runQuery(query, (err, result, fields) => {
-    console.log(err)
-    console.log(result)
     if (err) {
       res.status(404).send()
     } else {

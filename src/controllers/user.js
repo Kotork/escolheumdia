@@ -25,6 +25,24 @@ export const bookingsPage = (req, res) => {
   })
 }
 
+// function that deletes a specific booking using it's id
+export const deleteBooking = (req, res) => {
+  let query = `
+    DELETE FROM Reservations
+    WHERE Reservations.id = ${ req.body.id }
+  `
+
+  runQuery(query, (err, result, fields) => {
+    if (err) {
+      res.status(404).send()
+    } else {
+      res.status(200).send()
+    }
+  })
+
+  res.status(500).send()
+}
+
 // CARDS
 // function to send data necessary to load cards page
 export const cardsPage = (req, res) => {
@@ -234,8 +252,6 @@ export const updateService = (req, res) => {
     query = "UPDATE `Services` SET `name`='" + req.body.name + "', `price`=" + req.body.price + ", `duration`= " + req.body.duration + " WHERE Services.id = " + req.body.id
 
     runQuery(query, (err, result, fields) => {
-      console.log(err)
-      console.log(result)
       if (err) {
         res.status(404).send()
       } else {
@@ -320,11 +336,7 @@ export const updateStaff = (req, res) => {
     // update staff member
     query = "UPDATE `Staff` SET `name`='" + req.body.name + "', `photo`='" + req.body.photo + "' WHERE Staff.id = " + req.body.id
 
-    console.log(query)
-
     runQuery(query, (err, result, fields) => {
-      console.log(err)
-      console.log(result)
       if (err) {
         res.status(404).send()
       } else {

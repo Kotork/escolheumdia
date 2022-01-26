@@ -15,11 +15,11 @@ const pool = mysql.createPool({
 export const runQuery = async (query, callback) => {
   pool.getConnection(function (err, connection) {
       if (err) {
-          //console.error(err);
+          console.error(err);
       }
       connection.query(query, function (err, result, fields) {
           if (err) {
-              //console.error(err);
+              console.error(err);
           }
           connection.release();
           return callback(err, result, fields);

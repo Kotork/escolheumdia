@@ -9,8 +9,6 @@ async function handleSubmit(event) {
     name: document.getElementById("staffName").value,
   }
 
-  console.log(data)
-
   fetch(`${ baseUrl }/user/staff`, {
     method: "POST",
     body: JSON.stringify(data),

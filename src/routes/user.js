@@ -1,6 +1,6 @@
 import express from 'express';
 import {
-  bookingsPage, // Bookings Controller
+  bookingsPage, deleteBooking, // Bookings Controller
   cardsPage, updateCard, // Cards Controller
   clientsPage, deleteClient, getClient, updateClient, // Client Controller
   invoicesPage, // Invoices Controller
@@ -18,6 +18,7 @@ userRouter.get('/', userPage)
 
 // Bookings
 userRouter.get('/bookings', bookingsPage)
+userRouter.delete('/booking', deleteBooking)
 
 // Cards
 userRouter.get('/cards', cardsPage)

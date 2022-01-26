@@ -16,8 +16,6 @@ async function handleSubmit(event) {
     rgpd: document.getElementById("clientRGPD").checked
   }
 
-  console.log(data)
-
   fetch(`${ baseUrl }/user/client`, {
     method: "POST",
     body: JSON.stringify(data),

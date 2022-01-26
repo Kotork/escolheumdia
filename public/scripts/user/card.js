@@ -117,7 +117,6 @@ window.onload = function () {
 
   //pop in the appropriate card icon when detected
   cardnumber_mask.on("accept", function () {
-    console.log(cardnumber_mask.masked.currentMask.cardtype);
     switch (cardnumber_mask.masked.currentMask.cardtype) {
       case 'american express':
         ccicon.innerHTML = amex;
@@ -244,8 +243,6 @@ async function handleSubmit(event) {
     validity: document.getElementById('expirationdate').value,
     cvv: document.getElementById('securitycode').value
   }
-
-  console.log(data)
 
   fetch(`${ baseUrl }/user/card`, {
     method: "POST",
