@@ -66,4 +66,11 @@ export const bookingClientPage3 = (req, res) => {
   let id_client = req.params.client
   let id_service = req.params.service
   let id_staff = req.params.staff
+
+  res.render('bookingClient3', {data: {
+    ...options,
+    id_staff,
+    id_client,
+    id_service
+   }});
 }

@@ -1,6 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import session from 'express-session';
+import cookieSession from 'cookie-session';
 
 const app  = express();
 
@@ -19,25 +19,24 @@ app.use('/auth', express.static('public'))
 app.use('/user', express.static('public'))
 app.use('/booking', express.static('public'))
 app.use('/booking/:client', express.static('public'))
+app.use('/booking/:client/:service', express.static('public'))
+app.use('/booking/:client/:service/:staff', express.static('public'))
 
-app.use(session({
-	secret: 'cdm',
-	cookie: {
-		maxAge: 60000
-	},
-	resave: true,
-	saveUninitialized: true
+app.use(cookieSession({
+	name: 'eudSession',
+	keys: ['some'],
+	maxAge: 24 * 60 * 60 * 1000
 }))
 
 // Custom middleware to access session data in EJS
 app.use(function(req, res, next) {
-	req.session.user = {
-		id: 29,
-    name: 'Admin User',
-    email: 'admin@admin.pt',
-    rgpd: true,
-    role: 'ADMIN'
-  }
+	// req.session.user = {
+	// 	id: 29,
+  //   name: 'Admin User',
+  //   email: 'admin@admin.pt',
+  //   rgpd: true,
+  //   role: 'ADMIN'
+  // }
 	console.log('SESSION')
 	console.log(req.session.user)
   res.locals.session = req.session;
