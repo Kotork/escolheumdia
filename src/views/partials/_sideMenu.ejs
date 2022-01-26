@@ -6,14 +6,16 @@
 
     <!-- When user is a user -->
     <% if (session.user.role === 'USER') { %>
-    <li class="<%= data.page === 'Cards' && 'active' %>">
-      <a href="/user/cards">Meus cartões</a>
-    </li>
+      <li class="<%= data.page === 'Cards' && 'active' %>">
+        <a href="/user/cards">Meus cartões</a>
+      </li>
+      <li class="<%= data.page === 'Bookings' && 'active' %>">
+        <a href="/user/bookings">Minhas reservas</a>
+      </li>
+      <li class="<%= data.page === 'Invoices' && 'active' %>">
+        <a href="/user/invoices">Minhas faturas</a>
+      </li>
     <% } %>
-
-    <li class="<%= data.page === 'Bookings' && 'active' %>">
-      <a href="/user/bookings">Minhas reservas</a>
-    </li>
 
     <!-- When user is a client -->
     <% if (session.user.role === 'CLIENT') { %>
@@ -26,6 +28,12 @@
       <li class="<%= data.page === 'Sdd' && 'active' %>">
         <a href="/user/sdd">Métodos de pagamento</a>
       </li>
+      <li class="<%= data.page === 'Bookings' && 'active' %>">
+        <a href="/user/bookings">Minhas reservas</a>
+      </li>
+      <li class="<%= data.page === 'Invoices' && 'active' %>">
+        <a href="/user/invoices">Minhas faturas</a>
+      </li>
     <% } %>
 
     <!-- When user is a admin -->
@@ -37,10 +45,6 @@
         <a href="/user/clients">Meus clientes</a>
       </li>
     <% } %>
-
-    <li class="<%= data.page === 'Invoices' && 'active' %>">
-      <a href="/user/invoices">Minhas faturas</a>
-    </li>
   </ul>
 
   <div>

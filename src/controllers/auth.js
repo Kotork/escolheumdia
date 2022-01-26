@@ -52,8 +52,6 @@ export const signinClients = (req, res) => {
     WHERE Clients.email = '${ req.body.email }'
   `
 
-  console.log(query)
-
   runQuery(query, (err, result, fields) => {
     console.log(err)
     console.log(result)
