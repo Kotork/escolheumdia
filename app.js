@@ -9,7 +9,6 @@ const app  = express();
 const PORT = process.env.PORT || 3000
 
 app.use(enforce.HTTPS({ trustProtoHeader: true })) // Comment for dev || Uncomment for production
-app.use(cors())
 
 // Middlewares
 app.use(bodyParser.json({
@@ -18,6 +17,8 @@ app.use(bodyParser.json({
 app.use(bodyParser.urlencoded({
 	extended: false
 }));
+app.use(cors())
+
 // Middleware to serve Static Files
 app.use(express.static('public'));
 app.use('/auth', express.static('public'))
