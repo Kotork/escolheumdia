@@ -35,8 +35,10 @@ app.use(function(req, res, next) {
     name: 'Admin User',
     email: 'admin@admin.pt',
     rgpd: true,
-    role: 'CLIENT'
+    role: 'ADMIN'
   }
+	console.log('SESSION')
+	console.log(req.session.user)
   res.locals.session = req.session;
   next();
 });

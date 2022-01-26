@@ -27,11 +27,11 @@ async function handleSubmit(event) {
           'Content-Type': 'application/json'
       }
     }).then( response => {
-      if (response.status === 400) {
+      if (response.status === 401) {
         alert('Utilizador ou password errada')
         form.reset()
       } else {
-        //window.location.href = `${baseUrl}/user`
+        window.location.href = `${baseUrl}/user`
       }
     }).catch(error => alert(error.message));
   } else {

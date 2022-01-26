@@ -19,57 +19,34 @@ export const signupPage = (req, res) => {
   res.render('auth/signup', {data: { ...options, page: 'Signup' }});
 }
 
-export const signin = async (req, res) => {
+export const signin = (req, res) => {
   let query = `
     SELECT *
     FROM Users
-    WHERE Users.email = ${ req.body.email }
+    WHERE Users.email = '${ req.body.email }'
   `
 
   console.log(query)
 
-  await runQuery(query, (err, result, fields) => {
-    console.log('------------------')
-    console.log(err)
+  runQuery(query, (err, result, fields) => {
     if (err) {
-      res.status(500).send('Something went wrong!')
-      return
+      res.status(404).send()
+    } else {
+      console.log('------------------')
+      console.log(result)
+      console.log(result[0].password)
+      console.log(req.body.password)
+
+      if (result[0].password === req.body.password) {
+        // Passwords match and we can login user
+        req.session.user = (({password, ...o}) => o)(result[0]) // stores all user except password
+        res.status(200).send()
+      } else {
+        // Passwords do not match
+        res.status(401).send()
+      }
     }
-    console.log('------------------')
-    console.log(result)
-    console.log(result[0].password)
   })
-/*
-  if (body.submit === 'Login') {
-    // Will check if the user exists
-    const foundUser = mockData.find( (mockUser) => mockUser.email === body.email)
-
-    if (!foundUser) {
-      res.render('login', { data: { ...options, error: loginError }}); // user does not exist
-    }
-
-    // Checks if passwords match
-    if (foundUser.password !== body.password) {
-      res.render('login', { data: { ...options, error: loginError }}); // passwords do not match
-    }
-
-    // If it gets to this point, user is ok and can login
-    req.session.user = (({password, ...o}) => o)(foundUser) // stores all user except password
-    res.redirect('/')
-  } else {
-    console.log('User is creating a new account');
-
-    const newAccount = {
-      name: body.name,
-      email: body.email,
-      password: body.password,
-      rgpd: body.rgpd === 'on', // true if accepted
-      role: body.email.split('@').pop() === 'admin.pt' ? 'ADMIN' : 'USER'
-    }
-
-    console.log(newAccount)
-  }*/
-  res.send(true)
 }
 
 export const signup = async (req, res) => {
