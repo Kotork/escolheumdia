@@ -7,7 +7,7 @@
     <!-- When user is a user -->
     <% if (session.user.role === 'USER') { %>
     <li class="<%= data.page === 'Cards' && 'active' %>">
-      <a href="/user?cards">Meus cartões</a>
+      <a href="/user/cards">Meus cartões</a>
     </li>
     <% } %>
 

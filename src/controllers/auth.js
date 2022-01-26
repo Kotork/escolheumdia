@@ -78,9 +78,7 @@ export const signup = async (req, res) => {
   await runQuery(query, (err, result, fields) => {
     if (err) {
       if (err.code === 'ER_DUP_ENTRY') { // Error if the email already exists
-        console.log('aqui')
         res.status(500).send('Something went wrong!')
-        return
       }
     }
 

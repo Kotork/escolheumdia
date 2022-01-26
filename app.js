@@ -16,6 +16,8 @@ app.use(bodyParser.urlencoded({
 // Middleware to serve Static Files
 app.use(express.static('public'));
 app.use('/auth', express.static('public'))
+app.use('/user', express.static('public'))
+app.use('/booking', express.static('public'))
 
 app.use(session({
 	secret: 'cdm',

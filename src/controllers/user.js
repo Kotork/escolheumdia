@@ -2,54 +2,53 @@ import { runQuery } from '../helpers/query.js'
 
 let options = {
   title: 'Perfil',
-  page: 'Profile',
+  page: '',
   error: ''
 };
 
+export const cardsPage = (req, res) => {
+  options.page = 'Cards'
+
+  let query = `
+    SELECT *
+    FROM Cards
+    WHERE Cards.id_user = ${req.session.user.id}
+  `
+
+  runQuery(query, (err, result, fields) => {
+    if (result.length) {
+      options = { ...options, card: {
+        id: result[0].id,
+        name: result[0].name,
+        number: result[0].number,
+        validity: result[0].validity,
+        cvv: result[0].cvv,
+      } }
+    }
+  })
+
+  res.render('user', {data: options});
+}
+
+export const staffPage = (req, res) => {
+  options.page = 'Staff'
+
+  let query = `
+    SELECT *
+    FROM Staff
+    WHERE Staff.id_user = ${req.session.user.id}
+  `
+
+  runQuery(query, (err, result, fields) => {
+    console.log("aqui")
+    console.log(result)
+  })
+
+  res.render('user', {data: options});
+}
+
 export const userPage = (req, res) => {
   options.page = req.url === '/' ? 'Profile' : req.url.substr(2)[0].toUpperCase() + req.url.substr(2).substr(1).toLowerCase();
-  let query;
-
-  switch (options.page) {
-    // USER PAGE CARDS
-    case 'Cards':
-      query = `
-        SELECT *
-        FROM Cards
-        WHERE Cards.id_user = ${req.session.user.id}
-      `
-
-      runQuery(query, (err, result, fields) => {
-        if (result.length) {
-          options = { ...options, card: {
-            id: result[0].id,
-            name: result[0].name,
-            number: result[0].number,
-            validity: result[0].validity,
-            cvv: result[0].cvv,
-          } }
-        }
-      })
-      break;
-    // USER PAGE STAFF
-    case 'Staff':
-      console.log("staff")
-      query = `
-        SELECT *
-        FROM Staff
-        WHERE Staff.id_user = ${req.session.user.id}
-      `
-
-      runQuery(query, (err, result, fields) => {
-        console.log("aqui")
-        console.log(result)
-      })
-      break;
-    default:
-      console.log('other page')
-  }
-
-  console.log(options)
 
   res.render('user', {data: options});
 }
