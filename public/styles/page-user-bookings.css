@@ -30,7 +30,6 @@
 
 /* LAST COLUMN */
 .container--bookings table tr td:nth-last-child(1) {
-  border: none;
   display: flex;
   justify-content: space-around;
   align-items: center;
