@@ -20,7 +20,7 @@ async function handleSubmit() {
       alert('ERRO')
     } else {
       alert('Reserva efetuada')
-      window.location.href = `${baseUrl}/user`
+      window.location.href = `${baseUrl}/user/bookings`
     }
   }).catch(error => alert(error.message));
 }
