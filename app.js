@@ -45,12 +45,13 @@ app.set('view engine', 'ejs');
 
 // Routes
 import authRouter from './src/routes/auth.js';
+import bookingRouter from './src/routes/booking.js';
 import homeRouter from './src/routes/home.js';
 import userRouter from './src/routes/user.js';
 
 app.use('/', homeRouter);
 app.use('/auth', authRouter);
-app.use('/auth/*', authRouter);
+app.use('/booking', bookingRouter);
 app.use('/user', userRouter);
 
 app.get('*', (req, res) => {
