@@ -4,9 +4,10 @@ async function handleSubmit(event) {
   event.preventDefault()
 
   let data = {
-    id: document.getElementById("staffId").value,
-    photo: document.getElementById("staffPhoto").value,
-    name: document.getElementById("staffName").value,
+    id: document.getElementById("serviceId").value,
+    photo: document.getElementById("serviceName").value,
+    price: document.getElementById("servicePrice").value,
+    duration: document.getElementById("serviceDuration").value,
   }
 
   console.log(data)

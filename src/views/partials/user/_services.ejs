@@ -7,56 +7,26 @@
   </div>
 
   <form action="" method="post" id="updateForm" class="d--none">
-		<input type="hidden" id="clientId" name="id" value="">
+		<input type="hidden" id="serviceId" name="id" value="">
     <h1 class="form--title">Editar serviço</h1>
-    <div class="form--twoColumns">
-      <div class="form--field">
-        <label for="clientLogo">Logo</label>
-        <input id="clientLogo" type="text" name="logo" value="">
-      </div>
-      <div class="form--field">
-        <label for="clientName">Nome</label>
-        <input id="clientName" type="text" name="name" value="">
-      </div>
-    </div>
-
-    <div class="form--twoColumns">
-      <div class="form--field">
-        <label for="clientNIF">NIF</label>
-        <input id="clientNIF" type="number" name="nif" value="">
-      </div>
-      <div class="form--field">
-        <label for="clientEmail">Email</label>
-        <input id="clientEmail" type="email" name="email" value="">
-      </div>
-    </div>
 
     <div class="form--field">
-      <label for="clientStreet">Rua</label>
-      <input id="clientStreet" type="text" name="street" value="">
+      <label for="serviceName">Nome</label>
+      <input id="serviceName" type="text" name="name" value="">
     </div>
 
-    <div class="form--threeColumns">
+    <div class="form--twoColumns">
       <div class="form--field">
-        <label for="clientCity">Cidade</label>
-        <input id="clientCity" type="text" name="city" value="">
+        <label for="servicePrice">Preço</label>
+        <input id="servicePrice" type="text" name="price" value="">
       </div>
       <div class="form--field">
-        <label for="clientZipCode">Código Postal</label>
-        <input id="clientZipCode" type="text" name="zip_code" value="">
-      </div>
-      <div class="form--field">
-        <label for="clientCountry">País</label>
-        <input id="clientCountry" type="text" name="country" value="">
+        <label for="serviceDuration">Duração (em minutos)</label>
+        <input id="serviceDuration" type="text" name="service" value="">
       </div>
     </div>
 
-    <div class="form--field__checkbox">
-      <input id="clientRGPD" type="checkbox" name="rgpd">
-      <label for="clientRGPD">RGPD - Termos e Condições</label>
-    </div>
-
-    <input type="submit" name="submit" value="Guardar Cliente" class="btn btn--round btn--end">
+    <input type="submit" name="submit" value="Guardar Serviço" class="btn btn--round btn--end">
   </form>
 
   <table>

@@ -20,19 +20,19 @@ export const signin = (req, res) => {
   let query = `
     SELECT *
     FROM Users
-    WHERE Users.email = '${ req.body.email }'
+    WHERE Users.email = '${ req.body.email }' AND Users.password = '${ req.body.password }'
   `
 
   runQuery(query, (err, result, fields) => {
+    console.log(result)
+    console.log(err)
     if (err) {
       res.status(404).send()
     } else {
-      if (result[0].password === req.body.password) {
-        // Passwords match and we can login user
+      if (result.length) {
         req.session.user = (({password, ...o}) => o)(result[0]) // stores all user except password
         res.status(200).send()
       } else {
-        // Passwords do not match
         res.status(401).send()
       }
     }
@@ -48,7 +48,7 @@ export const signinClients = (req, res) => {
   let query = `
     SELECT *
     FROM Clients
-    WHERE Clients.email = '${ req.body.email }'
+    WHERE Clients.email = '${ req.body.email }' AND Clients.password = '${ req.body.password }'
   `
 
   runQuery(query, (err, result, fields) => {
@@ -57,13 +57,11 @@ export const signinClients = (req, res) => {
     if (err) {
       res.status(404).send()
     } else {
-      if (result[0].password === req.body.password) {
-        // Passwords match and we can login user
+      if (result.length) {
         req.session.user = (({password, ...o}) => o)(result[0]) // stores all user except password
         req.session.user = { ...req.session.user, role: 'CLIENT' } // For this specific case we have to add CLIENT role
         res.status(200).send()
       } else {
-        // Passwords do not match
         res.status(401).send()
       }
     }
