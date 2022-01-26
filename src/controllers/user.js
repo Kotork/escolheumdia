@@ -52,6 +52,42 @@ export const staffPage = (req, res) => {
   })
 }
 
+export const bookingsPage = (req, res) => {
+  options.page = 'Bookings'
+
+  res.render('user', {data: options});
+}
+
+export const clientsPage = (req, res) => {
+  options.page = 'Clients'
+
+  res.render('user', {data: options});
+}
+
+export const invoicesPage = (req, res) => {
+  options.page = 'Invoices'
+
+  res.render('user', {data: options});
+}
+
+export const sddPage = (req, res) => {
+  options.page = 'Sdd'
+
+  res.render('user', {data: options});
+}
+
+export const servicesPage = (req, res) => {
+  options.page = 'Services'
+
+  res.render('user', {data: options});
+}
+
+export const usersPage = (req, res) => {
+  options.page = 'Users'
+
+  res.render('user', {data: options});
+}
+
 export const userPage = (req, res) => {
   options.page = req.url === '/' ? 'Profile' : req.url.substr(2)[0].toUpperCase() + req.url.substr(2).substr(1).toLowerCase();
 
