@@ -47,6 +47,7 @@ function showHideForm() {
     clientForm.classList.remove('d--none')
   } else {
     // We have to hide the form
+    form.reset()
     clientForm.classList.add('d--none')
   }
 }
@@ -75,8 +76,34 @@ function deleteClient(id) {
 
 function updateClient(event) {
   let tableRow = event.target.parentNode.parentNode
+  let data = { id: tableRow.getElementsByTagName('td')[1].innerText }
 
-  console.log(tableRow)
-  console.log(tableRow.getElementsByTagName('td')[1])
-  console.log(tableRow.getElementsByTagName('td')[1].innerText)
+  fetch(`${ baseUrl }/user/getclient`, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    }
+  }).then(response => {
+    if (response.status === 404) {
+      alert('Algo correu mal')
+    } else {
+      clientForm.classList.remove('d--none')
+      response.json().then( (res) => {
+        document.getElementById("clientId").value = res.result[0].id,
+        document.getElementById("clientLogo").value = res.result[0].logo,
+        document.getElementById("clientName").value = res.result[0].name,
+        document.getElementById("clientNIF").value = res.result[0].nif,
+        document.getElementById("clientEmail").value = res.result[0].email,
+        document.getElementById("clientStreet").value = res.result[0].street,
+        document.getElementById("clientCity").value = res.result[0].city,
+        document.getElementById("clientZipCode").value = res.result[0].zip_code,
+        document.getElementById("clientCountry").value = res.result[0].country,
+        document.getElementById("clientRGPD").checked = res.result[0].rgpd
+      })
+    }
+  }).catch(error => {
+    alert(error)
+  });
 }

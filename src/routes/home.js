@@ -1,5 +1,5 @@
 import express from 'express';
-import { runQuery } from '../helpers/query.js';
+import { runQuery } from '../models/query.js';
 
 const homeRouter = express.Router()
 

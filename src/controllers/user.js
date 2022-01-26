@@ -1,4 +1,4 @@
-import { runQuery } from '../helpers/query.js'
+import { runQuery } from '../models/query.js'
 
 let options = {
   title: 'Perfil',
@@ -132,6 +132,29 @@ export const updateCard = (req, res) => {
   res.status(500).send()
 }
 
+// function that return a specific client
+export const getClient = (req, res) => {
+  let query = `
+    SELECT *
+    FROM Clients
+    WHERE Clients.id = ${ req.body.id }
+  `
+
+  console.log('CLIETN: getclient')
+
+  console.log(query)
+
+  runQuery(query, (err, result, fields) => {
+    console.log(err)
+    console.log(result)
+    if (err) {
+      res.status(404).send()
+    } else {
+      res.status(200).json({result})
+    }
+  })
+}
+
 // function that creates or updates a client
 export const updateClient = (req, res) => {
   let query;
@@ -141,15 +164,17 @@ export const updateClient = (req, res) => {
 
   if (req.body.id) {
     // update client
-    query = "UPDATE `Cards` SET `name`='" + req.body.name + "', `number`='" + req.body.number + "', `cvv`=" + req.body.cvv + ", `validity`='" + req.body.validity + "' WHERE Cards.id = " + req.body.id
+    query = "UPDATE `Clients` SET `email`='" + req.body.email + "', `name`='" + req.body.name + "', `nif`=" + req.body.nif + ", `street`='" + req.body.street + "', `city`='" + req.body.city + "', `zip_code`= '" + req.body.zip_code + "', `country`= '" + req.body.country + "', `logo` = '" + req.body.logo + "', `rgpd`= " + (req.body.rgpd ? 1 : 0) + " WHERE Clients.id = " + req.body.id
 
-    /*runQuery(query, (err, result, fields) => {
+    runQuery(query, (err, result, fields) => {
+      console.log(err)
+      console.log(result)
       if (err) {
         res.status(404).send()
       } else {
         res.status(200).send()
       }
-    })*/
+    })
   } else {
     // create new card
     query = "INSERT INTO `Clients`(`email`, `password`, `name`, `nif`, `street`, `city`, `zip_code`, `country`, `logo`, `rgpd`) VALUES ('" + req.body.email + "', '1234', '" + req.body.name + "', " + req.body.nif + ", '" + req.body.street + "', '" + req.body.city + "', '" + req.body.zip_code + "', '" + req.body.country + "', '" + req.body.logo + "', " + (req.body.rgpd ? 1 : 0) + ")"
@@ -173,8 +198,6 @@ export const deleteClient = (req, res) => {
   `
 
   runQuery(query, (err, result, fields) => {
-    console.log(err)
-    console.log(result)
     if (err) {
       res.status(404).send()
     } else {

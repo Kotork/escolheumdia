@@ -1,5 +1,5 @@
 import express from 'express';
-import { bookingsPage, cardsPage, clientsPage, deleteClient, invoicesPage, sddPage, servicesPage, staffPage, userPage, usersPage, updateCard, updateClient } from '../controllers/user.js';
+import { bookingsPage, cardsPage, clientsPage, deleteClient, getClient, invoicesPage, sddPage, servicesPage, staffPage, userPage, usersPage, updateCard, updateClient } from '../controllers/user.js';
 
 const userRouter = express.Router()
 
@@ -15,6 +15,7 @@ userRouter.get('/users', usersPage)
 
 userRouter.post('/card', updateCard)
 userRouter.post('/client', updateClient)
+userRouter.post('/getclient', getClient)
 
 userRouter.delete('/client', deleteClient)
 

@@ -1,5 +1,4 @@
-import { runQuery } from '../helpers/query.js';
-import { findUserByEmail } from '../helpers/users.js';
+import { runQuery } from '../models/query.js';
 
 const loginError = 'User or password incorrect';
 
