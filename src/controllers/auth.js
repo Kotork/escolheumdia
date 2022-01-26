@@ -25,12 +25,17 @@ export const signin = async (req, res) => {
     FROM Users
     WHERE Users.email = ${ req.body.email }
   `
+
+  console.log(query)
+
   await runQuery(query, (err, result, fields) => {
+    console.log('------------------')
+    console.log(err)
     if (err) {
       res.status(500).send('Something went wrong!')
       return
     }
-
+    console.log('------------------')
     console.log(result)
     console.log(result[0].password)
   })
