@@ -12,34 +12,34 @@
     <% } %>
 
     <li class="<%= data.page === 'Bookings' && 'active' %>">
-      <a href="/user?bookings">Minhas reservas</a>
+      <a href="/user/bookings">Minhas reservas</a>
     </li>
 
     <!-- When user is a client -->
     <% if (session.user.role === 'CLIENT') { %>
       <li class="<%= data.page === 'Staff' && 'active' %>">
-        <a href="/user?staff">Meus funcionários</a>
+        <a href="/user/staff">Meus funcionários</a>
       </li>
       <li class="<%= data.page === 'Services' && 'active' %>">
-        <a href="/user?services">Meus serviços</a>
+        <a href="/user/services">Meus serviços</a>
       </li>
       <li class="<%= data.page === 'Sdd' && 'active' %>">
-        <a href="/user?sdd">Métodos de pagamento</a>
+        <a href="/user/sdd">Métodos de pagamento</a>
       </li>
     <% } %>
 
     <!-- When user is a admin -->
     <% if (session.user.role === 'ADMIN') { %>
       <li class="<%= data.page === 'Users' && 'active' %>">
-        <a href="/user?users">Meus utilizadores</a>
+        <a href="/user/users">Meus utilizadores</a>
       </li>
       <li class="<%= data.page === 'Clients' && 'active' %>">
-        <a href="/user?clients">Meus clientes</a>
+        <a href="/user/clients">Meus clientes</a>
       </li>
     <% } %>
 
     <li class="<%= data.page === 'Invoices' && 'active' %>">
-      <a href="/user?invoices">Minhas faturas</a>
+      <a href="/user/invoices">Minhas faturas</a>
     </li>
   </ul>
 

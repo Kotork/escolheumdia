@@ -36,15 +36,20 @@ export const staffPage = (req, res) => {
   let query = `
     SELECT *
     FROM Staff
-    WHERE Staff.id_user = ${req.session.user.id}
+    WHERE Staff.id_client = ${req.session.user.id}
   `
+  console.log(query)
 
   runQuery(query, (err, result, fields) => {
     console.log("aqui")
-    console.log(result)
+    console.log(err)
+    if (err) {
+      res.status(404).send()
+    } else {
+      console.log(result)
+      res.render('user', {data: { ...options, staff: result }});
+    }
   })
-
-  res.render('user', {data: options});
 }
 
 export const userPage = (req, res) => {

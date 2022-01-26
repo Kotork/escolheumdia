@@ -1,8 +1,8 @@
-import express from 'express';
-import { bookingPage } from '../controllers/booking.js';
+import express from "express";
+import { bookingPage } from "../controllers/booking.js";
 
-const userRouter = express.Router()
+const userRouter = express.Router();
 
-userRouter.get('/', bookingPage)
+userRouter.get("/", bookingPage);
 
 export default userRouter;

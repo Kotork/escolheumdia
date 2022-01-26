@@ -1,4 +1,4 @@
-.container--login {
+.container--user {
   grid-area: main;
   display: grid;
   grid-template-columns: .8fr repeat(2, 1fr);
@@ -18,4 +18,14 @@
   .main--content {
     padding: 0;
   }
+}
+
+.container--user .header {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 3rem;
+}
+
+.container--user .header svg {
+  cursor: pointer;
 }
