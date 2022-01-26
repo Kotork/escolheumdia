@@ -177,6 +177,7 @@ export const sddPage = (req, res) => {
 }
 
 // SERVICES
+// function to send data necessary to load services page
 export const servicesPage = (req, res) => {
   options.page = 'Services'
 
@@ -193,6 +194,73 @@ export const servicesPage = (req, res) => {
       res.render('user', {data: { ...options, services: result }});
     }
   })
+}
+
+// function that return a specific service
+export const getService = (req, res) => {
+  let query = `
+    SELECT *
+    FROM Services
+    WHERE Services.id = ${ req.body.id }
+  `
+
+  runQuery(query, (err, result, fields) => {
+    if (err) {
+      res.status(404).send()
+    } else {
+      res.status(200).json({result})
+    }
+  })
+}
+
+// function that creates or updates a service
+export const updateService = (req, res) => {
+  let query;
+
+  if (req.body.id) {
+    // update service
+    query = "UPDATE `Services` SET `name`='" + req.body.name + "', `price`=" + req.body.price + ", `duration`= " + req.body.duration + " WHERE Services.id = " + req.body.id
+
+    runQuery(query, (err, result, fields) => {
+      console.log(err)
+      console.log(result)
+      if (err) {
+        res.status(404).send()
+      } else {
+        res.status(200).send()
+      }
+    })
+  } else {
+    // create new service
+    query = "INSERT INTO `Services`(`name`, `price`, `duration`, `id_client`) VALUES ('" + req.body.name + "', " + req.body.price + ", " + req.body.duration + " ," + req.session.user.id + ")"
+
+    runQuery(query, (err, result, fields) => {
+      if (err) {
+        res.status(404).send()
+      } else {
+        res.status(200).send()
+      }
+    })
+  }
+  res.status(500).send()
+}
+
+// function that deletes a specific service member using it's id
+export const deleteService = (req, res) => {
+  let query = `
+    DELETE FROM Services
+    WHERE Services.id = ${ req.body.id }
+  `
+
+  runQuery(query, (err, result, fields) => {
+    if (err) {
+      res.status(404).send()
+    } else {
+      res.status(200).send()
+    }
+  })
+
+  res.status(500).send()
 }
 
 // STAFF

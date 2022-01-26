@@ -31,7 +31,7 @@ async function handleSubmit(event) {
     } else {
       alert('Cliente atualizado com sucesso')
       form.reset()
-      clientForm.classList.add('d--none')
+      form.classList.add('d--none')
       window.location.href = `${baseUrl}/user/clients`
     }
   }).catch(error => {
@@ -78,7 +78,7 @@ function updateClient(event) {
     if (response.status === 404) {
       alert('Algo correu mal')
     } else {
-      clientForm.classList.remove('d--none')
+      form.classList.remove('d--none')
       response.json().then( (res) => {
         document.getElementById("clientId").value = res.result[0].id,
         document.getElementById("clientLogo").value = res.result[0].logo,

@@ -1,8 +1,8 @@
 import express from "express";
 import { bookingPage } from "../controllers/booking.js";
 
-const userRouter = express.Router();
+const bookingRouter = express.Router();
 
-userRouter.get("/", bookingPage);
+bookingRouter.get("/", bookingPage);
 
-export default userRouter;
+export default bookingRouter;

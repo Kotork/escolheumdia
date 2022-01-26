@@ -9,5 +9,18 @@ const options = {
 };
 
 export const bookingPage = (req, res) => {
-  res.render('booking', {data: options});
+  let query = `
+    SELECT *
+    FROM Clients
+  `
+
+  runQuery(query, (err, result, fields) => {
+    console.log(err)
+    console.log(result)
+    if (err) {
+      res.status(404).send()
+    } else {
+      res.render('booking', {data: { ...options, clients: result }});
+    }
+  })
 }

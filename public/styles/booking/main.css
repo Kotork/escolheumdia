@@ -1,17 +1,43 @@
 .container--booking {
   grid-area: main;
+}
 
+.container--booking h1 {
+  margin: 4rem 0;
+  font-family: var(--title-font);
+}
+
+.container--booking h2 {
+  margin-bottom: 4rem;
+  font-weight: 400;
+}
+
+.container--booking .container--clients{
   display: grid;
-  grid-template-columns: repeat(auto-fill, 30%);
+  grid-template-columns: repeat(auto-fill, 18%);
   justify-content: space-between;
   align-items: center;
 }
 
-.container--booking .booking--client {
-  cursor: pointer;
+@media only screen and (max-width: 978px) {
+  .container--booking .container--clients {
+    grid-template-columns: repeat(auto-fill, 30%);
+  }
 }
 
-.container--booking .booking--client img {
+@media only screen and (max-width: 572px) {
+  .container--booking .container--clients {
+    grid-template-columns: repeat(auto-fill, 45%);
+  }
+}
+
+.container--booking .container--clients .booking--client {
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  height: auto;
+}
+
+.container--booking .container--clients .booking--client img {
   width: 100%;
   height: auto;
 }

@@ -5,14 +5,12 @@ async function handleSubmit(event) {
 
   let data = {
     id: document.getElementById("serviceId").value,
-    photo: document.getElementById("serviceName").value,
+    name: document.getElementById("serviceName").value,
     price: document.getElementById("servicePrice").value,
     duration: document.getElementById("serviceDuration").value,
   }
 
-  console.log(data)
-
-  fetch(`${ baseUrl }/user/staff`, {
+  fetch(`${ baseUrl }/user/services`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -23,10 +21,10 @@ async function handleSubmit(event) {
     if (response.status === 404) {
       alert('Algo correu mal')
     } else {
-      alert('Funcionário atualizado com sucesso')
+      alert('Serviço atualizado com sucesso')
       form.reset()
       form.classList.add('d--none')
-      window.location.href = `${baseUrl}/user/staff`
+      window.location.href = `${baseUrl}/user/services`
     }
   }).catch(error => {
     alert(error)
@@ -35,10 +33,10 @@ async function handleSubmit(event) {
 
 form.addEventListener("submit", handleSubmit)
 
-function deleteStaff(id) {
+function deleteServices(id) {
   let data = { id }
 
-  fetch(`${ baseUrl }/user/staff`, {
+  fetch(`${ baseUrl }/user/services`, {
     method: "DELETE",
     body: JSON.stringify(data),
     headers: {
@@ -49,19 +47,19 @@ function deleteStaff(id) {
     if (response.status === 404) {
       alert('Algo correu mal')
     } else {
-      alert('Funcionário apagado com sucesso')
-      window.location.href = `${baseUrl}/user/staff`
+      alert('Serviço apagado com sucesso')
+      window.location.href = `${baseUrl}/user/services`
     }
   }).catch(error => {
     alert(error)
   });
 }
 
-function updateStaff(event) {
+function updateServices(event) {
   let tableRow = event.target.parentNode.parentNode
-  let data = { id: tableRow.getElementsByTagName('td')[1].innerText }
+  let data = { id: tableRow.getElementsByTagName('td')[0].innerText }
 
-  fetch(`${ baseUrl }/user/getStaff`, {
+  fetch(`${ baseUrl }/user/getService`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -74,9 +72,10 @@ function updateStaff(event) {
     } else {
       form.classList.remove('d--none')
       response.json().then( (res) => {
-        document.getElementById("staffId").value = res.result[0].id,
-        document.getElementById("staffPhoto").value = res.result[0].photo,
-        document.getElementById("staffName").value = res.result[0].name
+        document.getElementById("serviceId").value = res.result[0].id,
+        document.getElementById("serviceName").value = res.result[0].name,
+        document.getElementById("servicePrice").value = res.result[0].price,
+        document.getElementById("serviceDuration").value = res.result[0].duration
       })
     }
   }).catch(error => {

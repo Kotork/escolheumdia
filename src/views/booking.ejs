@@ -3,20 +3,14 @@
 <%- include('./partials/_navbar.ejs') %>
 
 <div class="container--booking">
-  <div class="booking--client">
-    <img src="https://thumbs.dreamstime.com/b/design-de-logotipo-da-barbearia-modelo-barbershop-vintage-201411466.jpg" alt="Barbeiro">
-  </div>
-  <div class="booking--client">
-    <img src="https://img.elo7.com.br/product/original/281BAE4/logo-pronta-fotografia-logotipo-logomarca-cabeleireira.jpg" alt="Cabeleireira">
-  </div>
-  <div class="booking--client">
-    <img src="https://www.logogrupo.pt/wp-content/uploads/Leonor-Duarte.png" alt="Cabeleireira">
-  </div>
-  <div class="booking--client">
-    <img src="https://blog.agenciadosite.com.br/wp-content/uploads/2017/02/logo-para-cabelereiro-10.jpg" alt="Cabeleireira">
-  </div>
-  <div class="booking--client">
-    <img src="https://uploads.turbologo.com/uploads/design/hq_preview_image/768606/draw_svg20210702-6381-4wm00m.svg.png" alt="Barbeiro">
+  <h1>Fazer uma reserva</h1>
+  <h2>Escolhe um cliente</h2>
+  <div class="container--clients">
+    <% data.clients.forEach((order, i) => { %>
+      <a href="/booking=client=<%= data.clients[i].id %>" class="booking--client">
+        <img src="<%= data.clients[i].logo %>">
+      </a>
+    <% }) %>
   </div>
 </div>
 

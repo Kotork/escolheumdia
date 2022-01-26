@@ -5,7 +5,7 @@ import {
   clientsPage, deleteClient, getClient, updateClient, // Client Controller
   invoicesPage, // Invoices Controller
   sddPage, // SDD Controller
-  servicesPage, // Services Controller
+  servicesPage, updateService, getService, deleteService, // Services Controller
   staffPage, updateStaff, getStaff, deleteStaff, // Staff Controller
   userPage, // Profile Controller
   usersPage, // Users Controller
@@ -37,6 +37,9 @@ userRouter.get('/sdd', sddPage)
 
 // Services
 userRouter.get('/services', servicesPage)
+userRouter.post('/services', updateService)
+userRouter.post('/getservice', getService)
+userRouter.delete('/services', deleteService)
 
 // Staff
 userRouter.get('/staff', staffPage)
