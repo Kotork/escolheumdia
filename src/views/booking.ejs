@@ -7,7 +7,7 @@
   <h2>Escolhe um cliente</h2>
   <div class="container--clients">
     <% data.clients.forEach((order, i) => { %>
-      <a href="/booking=client=<%= data.clients[i].id %>" class="booking--client">
+      <a href="/booking/<%= data.clients[i].id %>" class="booking--client">
         <img src="<%= data.clients[i].logo %>">
       </a>
     <% }) %>
