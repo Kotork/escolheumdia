@@ -306,7 +306,7 @@ export const staffPage = (req, res) => {
     if (err) {
       res.status(404).send()
     } else {
-      res.render('user', {data: { ...options, staff: result }});
+      res.render('user', {data: { ...options, staff: result }}); //shows page
     }
   })
 }
